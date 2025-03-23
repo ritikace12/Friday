@@ -5,7 +5,7 @@ import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-const API_URL = "https://your-deployed-server.com/api/chat"; // Update with actual deployment URL
+const API_URL = "https://edith-9ord.onrender.com"; // Update with actual deployment URL
 
 function App() {
   const [messages, setMessages] = useState([]);
