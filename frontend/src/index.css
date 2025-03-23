@@ -1,0 +1,36 @@
+@import "tailwindcss";
+@layer base {
+  body {
+    @apply bg-[#0a0a2a] text-[#e6f6ff] min-h-screen flex flex-col;
+    font-family: 'Orbitron', 'Comic Sans MS', cursive;
+  }
+
+  #root {
+    @apply flex-1 flex flex-col;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 245, 255, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 245, 255, 0.5);
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .chat-container {
+    @apply h-[calc(100vh-250px)];
+  }
+}
