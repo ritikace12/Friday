@@ -47,7 +47,7 @@ function App() {
     <div className="min-h-screen flex flex-col">
       {/* ========================== NAVBAR ========================== */}
       <nav className="p-6 px-10 fixed top-0 w-full bg-gradient-to-r from-black via-black/90 to-black flex justify-between items-center z-50 shadow-lg">
-        <h1 className="text-3xl font-bold text-white tracking-widest">FRIDAY</h1>
+        <h1 className="text-3xl font-bold text-white tracking-widest">⌬ FRIDAY</h1>
 
         {/* Desktop Menu */}
         <div className="hidden sm:flex items-center space-x-6">
