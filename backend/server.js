@@ -27,15 +27,10 @@ const allowedOrigins = [
   process.env.FRONTEND_URL, // Render deployment (add this in .env)
 ];
 
-app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-}));
+const cors = require("cors");
+
+app.use(cors()); // Allows all origins (not safe for production)
+
 
 app.use(express.json()); // Parses incoming JSON requests
 app.use(limiter); // Apply rate limiting
