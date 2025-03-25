@@ -121,67 +121,72 @@ function App() {
       </nav>
 
       {/* ========================== CHAT BOX ========================== */}
-      <div className="flex flex-col flex-1 mt-20 p-6 sm:p-6">
-        <div className="flex-1 overflow-y-auto p-4 bg-white border-2 border-black rounded-xl shadow-lg max-h-[70vh] sm:max-h-[80vh] space-y-4">
-          {/* Loop through messages and render them */}
-          {messages.map((message, index) => (
-            <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
-              <div className={`p-3 rounded-lg max-w-[85%] break-words sm:max-w-[70%] 
-                  ${message.role === "user" ? "bg-white border-black border text-black" : "bg-black text-white "}`}>
-                
-                {/* Display message content using Markdown (for better formatting) */}
-                <ReactMarkdown
-                  children={message.content}
-                  components={{
-                    code({ node, inline, className, children, ...props }) {
-                      return !inline ? (
-                        // If it's a code block, use syntax highlighter
-                        <SyntaxHighlighter style={atomDark} language="javascript" PreTag="div" {...props}>
-                          {String(children).replace(/\n$/, "")}
-                        </SyntaxHighlighter>
-                      ) : (
-                        // If it's inline code, use simple styling
-                        <code className="bg-gray-700 px-1 py-0.5 rounded" {...props}>
-                          {children}
-                        </code>
-                      );
-                    },
-                  }}
-                />
-              </div>
-            </div>
-          ))}
+      <div className="flex flex-col flex-1 mt-20 p-6 sm:p-6 relative bg-chat-texture">
 
-          {/* Show loading message when AI is generating a response */}
-          {isLoading && <p className="text-center text-black">FRIDAY is thinking...</p>}
-          
-          {/* Invisible div to maintain auto-scroll */}
-          <div ref={messagesEndRef} />
-        </div>
+{/* Background Gradient for Depth */}
+<div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-gray-200 to-gray-300 opacity-50 z-0"></div>
 
-        {/* ========================== INPUT SECTION ========================== */}
-        <form onSubmit={handleSubmit} className="mt-6 flex gap-2 flex-wrap">
-          {/* Input field for user messages */}
-          <input 
-            type="text" 
-            value={input} 
-            onChange={(e) => setInput(e.target.value)} 
-            className="flex-1 p-3 rounded-lg bg-white border border-black text-black" 
-            placeholder="Type a message..." 
-            disabled={isLoading} 
-          />
-          
-          {/* Send Message Button */}
-          <button type="submit" className="p-3 bg-black text-white rounded-lg">
-            <FiSend size={20} />
-          </button>
-
-          {/* Clear Chat Button */}
-          <button type="button" onClick={clearChat} className="p-3 bg-black text-white rounded-lg">
-            <FiRefreshCw size={20} />
-          </button>
-        </form>
+<div className="flex-1 overflow-y-auto p-4 border-2 border-black rounded-xl shadow-lg max-h-[70vh] sm:max-h-[80vh] space-y-4 relative z-10 bg-chat-panel">
+  {/* Loop through messages and render them */}
+  {messages.map((message, index) => (
+    <div key={index} className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}>
+      <div className={`p-3 rounded-lg max-w-[85%] break-words sm:max-w-[70%] 
+          ${message.role === "user" ? "bg-white border-black border text-black shadow-md" : "bg-black text-white shadow-lg"}`}>
+        
+        {/* Display message content using Markdown */}
+        <ReactMarkdown
+          children={message.content}
+          components={{
+            code({ node, inline, className, children, ...props }) {
+              return !inline ? (
+                // If it's a code block, use syntax highlighter
+                <SyntaxHighlighter style={atomDark} language="javascript" PreTag="div" {...props}>
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
+              ) : (
+                // If it's inline code, use simple styling
+                <code className="bg-gray-700 px-1 py-0.5 rounded" {...props}>
+                  {children}
+                </code>
+              );
+            },
+          }}
+        />
       </div>
+    </div>
+  ))}
+
+  {/* Show loading message when AI is generating a response */}
+  {isLoading && <p className="text-center text-black">FRIDAY is thinking...</p>}
+  
+  {/* Invisible div to maintain auto-scroll */}
+  <div ref={messagesEndRef} />
+</div>
+
+{/* ========================== INPUT SECTION ========================== */}
+<form onSubmit={handleSubmit} className="mt-6 flex gap-2 flex-wrap relative z-10">
+  {/* Input field for user messages */}
+  <input 
+    type="text" 
+    value={input} 
+    onChange={(e) => setInput(e.target.value)} 
+    className="flex-1 p-3 rounded-lg bg-white border border-black text-black shadow-sm" 
+    placeholder="Type a message..." 
+    disabled={isLoading} 
+  />
+  
+  {/* Send Message Button */}
+  <button type="submit" className="p-3 bg-black text-white rounded-lg shadow-md">
+    <FiSend size={20} />
+  </button>
+
+  {/* Clear Chat Button */}
+  <button type="button" onClick={clearChat} className="p-3 bg-black text-white rounded-lg shadow-md">
+    <FiRefreshCw size={20} />
+  </button>
+</form>
+</div>
+
     </div>
   );
 }
