@@ -27,7 +27,6 @@ const allowedOrigins = [
   process.env.FRONTEND_URL, // Render deployment (add this in .env)
 ];
 
-const cors = require("cors");
 
 app.use(cors()); // Allows all origins (not safe for production)
 
