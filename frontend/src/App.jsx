@@ -4,7 +4,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 import { motion } from "framer-motion";
 
-const API_URL = "http://localhost:8080/api/chat";
+const API_URL = "https://friday-1-3lkl.onrender.com";
 
 function App() {
   const [messages, setMessages] = useState([]);
