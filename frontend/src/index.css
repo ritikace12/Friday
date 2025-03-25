@@ -1,2 +1,8 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+.text-border {
+    -webkit-text-stroke: 1px white; /* Border thickness and color */
+  }
+  
